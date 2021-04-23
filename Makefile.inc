@@ -1,15 +1,15 @@
 # Name: Makefile.inc
 # Project: USBaspLoader (updater)
-# Author: Stephan Bärwolf
+# Author: Stephan Bï¿½rwolf
 # Creation Date: 2012-09-01
 # Tabsize: 4
 # License: GNU GPL v2 (see License.txt)
 
 F_CPU = 16000000
-DEVICE = atmega8
+DEVICE = atmega328p
 
 # where the updating firmware should be located (starting address)
-FLASHADDRESS = 0x0000
+FLASHADDRESS = 0x7000
 
 # use any fix (ATxmega compatible) crc32, uncomment to disable feature or set automatically with value "0"
 ;UPDATECRC32  = 0
@@ -78,7 +78,7 @@ FUSEOPT_164             = -U lfuse:w:0xd7:m -U hfuse:w:0xd0:m -U efuse:w:0xfc:m
 BOOTLOADER_ADDRESS_164  = 0x3800
 DEFINES_164             = -DCONFIG_USE__EXCESSIVE_ASSEMBLER -DCONFIG_NO__NEED_WATCHDOG  -DCONFIG_NO__PRECISESLEEP -DCONFIG_NO__FLASH_BYTE_READACCESS -DCONFIG_NO__HAVE_READ_LOCK_FUSE
 ifeq ($(F_CPU), 12000000)
-DEFINES_164            += -DCONFIG_NO__BOOTLOADER_CAN_EXIT 
+DEFINES_164            += -DCONFIG_NO__BOOTLOADER_CAN_EXIT
 endif
 
 
@@ -147,7 +147,7 @@ endif
 
 FUSEOPT_168             = $(FUSEOPT_88)
 BOOTLOADER_ADDRESS_168  = 0x3800
-DEFINES_168             = -DCONFIG_USE__EXCESSIVE_ASSEMBLER -DCONFIG_NO__NEED_WATCHDOG -DCONFIG_NO__PRECISESLEEP -DCONFIG_NO__FLASH_BYTE_READACCESS -DCONFIG_NO__HAVE_READ_LOCK_FUSE 
+DEFINES_168             = -DCONFIG_USE__EXCESSIVE_ASSEMBLER -DCONFIG_NO__NEED_WATCHDOG -DCONFIG_NO__PRECISESLEEP -DCONFIG_NO__FLASH_BYTE_READACCESS -DCONFIG_NO__HAVE_READ_LOCK_FUSE
 
 
 
@@ -182,12 +182,12 @@ DEFINES_2560             = #-DEMPTY
 #autoselect logic
 ifeq ($(DEVICE), atmega8535)
   FUSEOPT            = $(FUSEOPT_8535)
-  BOOTLOADER_ADDRESS = $(BOOTLOADER_ADDRESS_8535) 
+  BOOTLOADER_ADDRESS = $(BOOTLOADER_ADDRESS_8535)
   MCUARCH            = avr4
   DEFINES	     += $(DEFINES_8535)
 else ifeq ($(DEVICE), atmega8)
   FUSEOPT            = $(FUSEOPT_8)
-  BOOTLOADER_ADDRESS = $(BOOTLOADER_ADDRESS_8) 
+  BOOTLOADER_ADDRESS = $(BOOTLOADER_ADDRESS_8)
   MCUARCH            = avr4
   DEFINES	     += $(DEFINES_8)
 else ifeq ($(DEVICE), atmega16)
